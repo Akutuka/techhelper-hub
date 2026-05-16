@@ -11,47 +11,466 @@
     <script>
         PopAds.init(123456); // Replace 123456 with your PopAds Site ID
     </script>
+    
+    <style>
+        /* Ludo Game Styles */
+        #ludoContainer {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #ludoBoard {
+            width: 400px;
+            height: 400px;
+            border: 3px solid #333;
+            position: relative;
+            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+
+        .ludoSquare {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ludoSquare:hover {
+            background: #f0f0f0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .ludoPiece {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: grab;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .ludoPiece.player1 { background: #FF6B6B; }
+        .ludoPiece.player2 { background: #4ECDC4; }
+        .ludoPiece.player3 { background: #FFE66D; }
+        .ludoPiece.player4 { background: #95E1D3; }
+
+        .ludoControls {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .diceButton {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .diceButton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .diceButton:active {
+            transform: translateY(-1px);
+        }
+
+        #diceValue {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .playerStatus {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .playerInfo {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .playerInfo.player1 { background: #FF6B6B; }
+        .playerInfo.player2 { background: #4ECDC4; }
+        .playerInfo.player3 { background: #FFE66D; color: #333; }
+        .playerInfo.player4 { background: #95E1D3; color: #333; }
+
+        .gameInfo {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .resetButton {
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .resetButton:hover {
+            background: #ff5252;
+        }
+
+        .startButton {
+            background: #4ECDC4;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+
+        .startButton:hover {
+            background: #3db8b0;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#guides">Guides</a>
+        <a href="#features">Features</a>
+        <a href="#ludo">Ludo Game</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Header -->
     <header>
         <h1>🛠️ TechHelper Hub</h1>
-        <p>Quick solutions for common tech problems</p>
+        <p>Quick solutions for common tech problems + Fun Games!</p>
     </header>
 
     <div class="container">
-        <div class="post">
-            <h2><a href="ads.html">How to Remove Ads from Android</a></h2>
-            <p>Step-by-step solution to stop annoying ads.</p>
+        <!-- Welcome Section -->
+        <div class="section" id="home">
+            <h2>Welcome to TechHelper Hub</h2>
+            <p>Your one-stop destination for tech troubleshooting guides and entertainment! We provide step-by-step solutions for Android issues, payment problems, device heating, and more. While you're here, enjoy our free Ludo game!</p>
         </div>
 
-        <div class="post">
-            <h2><a href="gpay.html">GPay Not Working Fix</a></h2>
-            <p>Quick solutions to fix payment problems.</p>
+        <!-- Tech Guides Section -->
+        <div class="section" id="guides">
+            <h2>📱 Tech Troubleshooting Guides</h2>
+
+            <div class="post">
+                <h3><a href="ads.html">How to Remove Ads from Android</a></h3>
+                <p>Tired of intrusive ads on your Android device? Learn the most effective methods to remove or block ads from apps and websites.</p>
+                <h4>What You'll Learn:</h4>
+                <ul>
+                    <li>Block ads using system settings</li>
+                    <li>Use ad blocker apps effectively</li>
+                    <li>DNS-level ad blocking</li>
+                    <li>Privacy-focused browser alternatives</li>
+                    <li>Safe VPN options for ad blocking</li>
+                </ul>
+                <a href="ads.html" class="read-more">Read Full Guide →</a>
+            </div>
+
+            <div class="post">
+                <h3><a href="gpay.html">GPay Not Working - Quick Fix</a></h3>
+                <p>Google Pay issues can be frustrating. We've compiled the most reliable solutions to get your GPay working again in minutes.</p>
+                <h4>Troubleshooting Steps:</h4>
+                <ul>
+                    <li>Clear app cache and data</li>
+                    <li>Update Google Pay to latest version</li>
+                    <li>Check internet connectivity</li>
+                    <li>Verify payment method settings</li>
+                    <li>Contact Google Support</li>
+                </ul>
+                <a href="gpay.html" class="read-more">Read Full Guide →</a>
+            </div>
+
+            <div class="post">
+                <h3><a href="heating.html">Why Your Phone Gets Hot - Solutions</a></h3>
+                <p>Device overheating can damage your phone and reduce battery life. Discover the causes and effective cooling methods.</p>
+                <h4>Common Causes & Fixes:</h4>
+                <ul>
+                    <li>Background app management</li>
+                    <li>Battery optimization techniques</li>
+                    <li>Reduce screen brightness wisely</li>
+                    <li>Disable unnecessary features</li>
+                    <li>Hardware issues & when to seek help</li>
+                </ul>
+                <a href="heating.html" class="read-more">Read Full Guide →</a>
+            </div>
         </div>
 
-        <div class="post">
-            <h2><a href="heating.html">Device Heating Issues</a></h2>
-            <p>Why your phone gets hot and how to fix it.</p>
+        <!-- Features Section -->
+        <div class="section" id="features">
+            <h2>✨ Why Choose TechHelper Hub?</h2>
+            <div class="features">
+                <div class="feature">
+                    <h4>⚡ Quick Solutions</h4>
+                    <p>Get fixes in minutes, not hours. Our guides are tested and verified.</p>
+                </div>
+                <div class="feature">
+                    <h4>🎯 Step-by-Step</h4>
+                    <p>Easy-to-follow instructions for users of all technical levels.</p>
+                </div>
+                <div class="feature">
+                    <h4>🆓 100% Free</h4>
+                    <p>All guides and tools are completely free. No hidden charges.</p>
+                </div>
+                <div class="feature">
+                    <h4>🎮 Entertainment</h4>
+                    <p>Enjoy our free Ludo game while you wait for solutions!</p>
+                </div>
+            </div>
         </div>
 
-        <div class="post">
-            <h2><a href="about.html">About Us</a></h2>
-            <p>Learn more about TechHelper Hub</p>
+        <!-- Ludo Game Section -->
+        <div id="ludoContainer" id="ludo">
+            <h2 style="text-align: center; color: #667eea;">🎲 Play Ludo Game</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                A classic Ludo experience! Roll the dice and move your pieces to the finish line. 
+                First player to get all pieces home wins!
+            </p>
+
+            <div class="ludoControls">
+                <div>
+                    <button class="startButton" onclick="initGame()">Start New Game</button>
+                    <button class="resetButton" onclick="resetGame()">Reset</button>
+                </div>
+            </div>
+
+            <div id="diceValue">🎲 Roll Dice!</div>
+            <div class="ludoControls">
+                <button class="diceButton" onclick="rollDice()">ROLL DICE</button>
+            </div>
+
+            <div id="ludoBoard"></div>
+
+            <div class="playerStatus">
+                <div class="playerInfo player1">
+                    <div>Player 1 (Red)</div>
+                    <div>Position: <span id="p1Pos">0</span></div>
+                </div>
+                <div class="playerInfo player2">
+                    <div>Player 2 (Cyan)</div>
+                    <div>Position: <span id="p2Pos">0</span></div>
+                </div>
+                <div class="playerInfo player3">
+                    <div>Player 3 (Yellow)</div>
+                    <div>Position: <span id="p3Pos">0</span></div>
+                </div>
+                <div class="playerInfo player4">
+                    <div>Player 4 (Green)</div>
+                    <div>Position: <span id="p4Pos">0</span></div>
+                </div>
+            </div>
+
+            <div class="gameInfo" id="gameStatus">
+                Click "Start New Game" to begin! Player 1 goes first.
+            </div>
         </div>
 
-        <div class="post">
-            <h2><a href="contact.html">Contact</a></h2>
-            <p>Get in touch with our support team</p>
+        <!-- Latest Tips Section -->
+        <div class="section">
+            <h2>📰 Latest Tech Tips</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 10px; border-bottom: 1px solid #eee;">✓ Keep your apps updated for better security and performance</li>
+                <li style="padding: 10px; border-bottom: 1px solid #eee;">✓ Regularly clear app cache to free up storage space</li>
+                <li style="padding: 10px; border-bottom: 1px solid #eee;">✓ Use strong, unique passwords for all your accounts</li>
+                <li style="padding: 10px; border-bottom: 1px solid #eee;">✓ Enable two-factor authentication for added security</li>
+                <li style="padding: 10px; border-bottom: 1px solid #eee;">✓ Turn off location services when not in use to save battery</li>
+            </ul>
         </div>
 
-        <div class="post">
-            <h2><a href="privacy.html">Privacy Policy</a></h2>
-            <p>Your privacy is important to us</p>
+        <!-- FAQ Section -->
+        <div class="faq" id="faq">
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h4>Is my data safe following your guides?</h4>
+                <p>Absolutely! All our guides are verified and safe. We provide official solutions from manufacturers and Google. Always backup your data before making major changes.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Will your solutions void my warranty?</h4>
+                <p>No. Our guides only use built-in Android features and official settings. No modifications or root access required. Your warranty remains intact.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How often are guides updated?</h4>
+                <p>We update our guides regularly to match the latest Android versions and device models. New solutions are added monthly based on common issues.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Can I request a guide for my specific issue?</h4>
+                <p>Yes! Visit our <a href="contact.html">Contact Page</a> and submit your issue. We'll create a guide if it's relevant to our audience.</p>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section" id="contact">
+            <h2>📧 Get in Touch</h2>
+            <p>Have a question or need help? We'd love to hear from you!</p>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 8px;">📧 Email: support@techhelper.com</li>
+                <li style="padding: 8px;">📱 WhatsApp: +91 XXXXX XXXXX</li>
+                <li style="padding: 8px;">🌐 Website: www.techhelper.com</li>
+                <li style="padding: 8px;">📍 Follow us on social media for daily tips</li>
+            </ul>
+            <a href="contact.html" class="read-more" style="display: inline-block; margin-top: 15px;">Contact Us →</a>
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 20px; color: #666;">
-        <p>&copy; 2026 TechHelper Hub. All rights reserved.</p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#guides">Guides</a></li>
+                    <li><a href="#ludo">Ludo Game</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TechHelper Hub. All rights reserved. | Made with ❤️ for tech lovers</p>
+        </div>
     </footer>
+
+    <script>
+        // Ludo Game JavaScript
+        let gameState = {
+            players: [
+                { pos: 0, color: 'player1', home: 0 },
+                { pos: 0, color: 'player2', home: 0 },
+                { pos: 0, color: 'player3', home: 0 },
+                { pos: 0, color: 'player4', home: 0 }
+            ],
+            currentPlayer: 0,
+            diceValue: 0,
+            gameActive: false,
+            boardSize: 52
+        };
+
+        function initGame() {
+            gameState = {
+                players: [
+                    { pos: 0, color: 'player1', home: 0 },
+                    { pos: 0, color: 'player2', home: 0 },
+                    { pos: 0, color: 'player3', home: 0 },
+                    { pos: 0, color: 'player4', home: 0 }
+                ],
+                currentPlayer: 0,
+                diceValue: 0,
+                gameActive: true,
+                boardSize: 52
+            };
+            document.getElementById('gameStatus').innerHTML = '<strong>Game Started!</strong> Player 1 (Red) - Roll the dice!';
+            updateDisplay();
+        }
+
+        function rollDice() {
+            if (!gameState.gameActive) {
+                alert('Please start a new game first!');
+                return;
+            }
+
+            gameState.diceValue = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('diceValue').innerHTML = `🎲 <strong>${gameState.diceValue}</strong>`;
+
+            // Move current player
+            let player = gameState.players[gameState.currentPlayer];
+            player.pos += gameState.diceValue;
+
+            if (player.pos >= gameState.boardSize) {
+                player.home++;
+                player.pos = 0;
+                if (player.home === 4) {
+                    document.getElementById('gameStatus').innerHTML = `<strong>🎉 Player ${gameState.currentPlayer + 1} Wins! 🎉</strong>`;
+                    gameState.gameActive = false;
+                    return;
+                }
+            }
+
+            // Next player
+            gameState.currentPlayer = (gameState.currentPlayer + 1) % 4;
+            updateDisplay();
+            updateGameStatus();
+        }
+
+        function updateDisplay() {
+            document.getElementById('p1Pos').innerHTML = gameState.players[0].pos;
+            document.getElementById('p2Pos').innerHTML = gameState.players[1].pos;
+            document.getElementById('p3Pos').innerHTML = gameState.players[2].pos;
+            document.getElementById('p4Pos').innerHTML = gameState.players[3].pos;
+        }
+
+        function updateGameStatus() {
+            const names = ['Red', 'Cyan', 'Yellow', 'Green'];
+            document.getElementById('gameStatus').innerHTML = `<strong>Player ${gameState.currentPlayer + 1} (${names[gameState.currentPlayer]})</strong> - Your turn! Roll the dice.`;
+        }
+
+        function resetGame() {
+            document.getElementById('diceValue').innerHTML = '🎲 Roll Dice!';
+            gameState.gameActive = false;
+            gameState.currentPlayer = 0;
+            gameState.players.forEach(p => { p.pos = 0; p.home = 0; });
+            updateDisplay();
+            document.getElementById('gameStatus').innerHTML = 'Game Reset! Click "Start New Game" to play again.';
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            resetGame();
+        };
+    </script>
 </body>
 </html>
